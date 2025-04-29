@@ -48,7 +48,7 @@ document.getElementById("quadratic-form").addEventListener("submit", function (e
   }
 
   const d = b * b - 4 * a * c;
-  const equation = `Equation is: (\${a}) x² + (\${b}) x + (\${c}) = 0\``;
+  const equation = \`Equation is: (\${a}) x² + (\${b}) x + (\${c}) = 0\`;
   if (d < 0) {
     result.textContent = \`\${equation}\nThere are 0 roots\`;
   } else if (d === 0) {
