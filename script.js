@@ -48,37 +48,15 @@ document.getElementById("quadratic-form").addEventListener("submit", function (e
   }
 
   const d = b * b - 4 * a * c;
-  const equation = \`Equation is: (\${a}) x² + (\${b}) x + (\${c}) = 0\`;
+  result.textContent = `Equation is: (${a}) x² + (${b}) x + (${c}) = 0`;
   if (d < 0) {
-    result.textContent = \`\${equation}\nThere are 0 roots\`;
+    result.textContent += "\nThere are 0 roots";
   } else if (d === 0) {
     const x = -b / (2 * a);
-    result.textContent = \`\${equation}\nThere is 1 root: x = \${x}\`;
+    result.textContent += `\nThere is 1 root: x = ${x}`;
   } else {
     const x1 = (-b + Math.sqrt(d)) / (2 * a);
     const x2 = (-b - Math.sqrt(d)) / (2 * a);
-    result.textContent = \`\${equation}\nThere are 2 roots: x1 = \${x1}, x2 = \${x2}\`;
+    result.textContent += `\nThere are 2 roots: x1 = ${x1}, x2 = ${x2}`;
   }
-});
-
-document.getElementById("fileInput").addEventListener("change", function (e) {
-  const file = e.target.files[0];
-  const output = document.getElementById("fileResult");
-
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    const content = e.target.result.trim();
-    const parts = content.split(" ");
-    if (parts.length !== 3) {
-      output.textContent = "invalid file format";
-      return;
-    }
-
-    const [a, b, c] = parts.map(Number);
-    solve(a, b, c);
-  };
-
-  reader.readAsText(file);
-});
+})
