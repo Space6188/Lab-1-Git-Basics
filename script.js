@@ -60,3 +60,25 @@ document.getElementById("quadratic-form").addEventListener("submit", function (e
     result.textContent = \`\${equation}\nThere are 2 roots: x1 = \${x1}, x2 = \${x2}\`;
   }
 });
+
+document.getElementById("fileInput").addEventListener("change", function (e) {
+  const file = e.target.files[0];
+  const output = document.getElementById("fileResult");
+
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const content = e.target.result.trim();
+    const parts = content.split(" ");
+    if (parts.length !== 3) {
+      output.textContent = "invalid file format";
+      return;
+    }
+
+    const [a, b, c] = parts.map(Number);
+    solve(a, b, c);
+  };
+
+  reader.readAsText(file);
+});
